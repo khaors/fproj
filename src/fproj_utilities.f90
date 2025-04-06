@@ -9,9 +9,9 @@ module fproj_utilities
     ! pj_direction
     enum,bind(c) 
         enumerator :: &
-        pj_fwd = 1, &
-        pj_ident= 0, &
-        pj_inv = -1
+        pj_fwd = 1_c_int, &
+        pj_ident= 0_c_int, &
+        pj_inv = -1_c_int
     end enum  
     ! pj_category
     enum,bind(c)
@@ -22,7 +22,7 @@ module fproj_utilities
         pj_category_coordinate_operation,&
         pj_category_datum_ensemble
     end enum
-  !
+  !pj_type
 	enum, bind(c)
 	  enumerator :: pj_type_unknown, &
 	    pj_type_ellipsoid, &
@@ -40,16 +40,16 @@ module fproj_utilities
 	    pj_type_temporal_datum, pj_type_engineering_datum, pj_type_parametric_datum,&
         pj_type_derived_projected_crs,pj_type_coordinate_metadata 
 	end enum
-    !
+    !pj_comparison
     enum,bind(c) 
         enumerator :: pj_comp_strict, pj_comp_equivalent, pj_comp_equivalent_except_axis_order_geogcrs
     end enum
-    !
+    !pj_wkt
     enum,bind(c)
         enumerator ::  pj_wkt2_2015, pj_wkt2_2015_simplified, pj_wkt2_2019, pj_wkt2_2018, &
              pj_wkt2_2019_simplified, pj_wkt2_2018_simplified, pj_wkt1_gdal, pj_wkt1_esri  
     end enum
-    !
+    !pj_crs
     enum,bind(c)
         enumerator :: pj_crs_extent_none,&
         !test coordinate operation extent against both crs extent.
@@ -59,11 +59,11 @@ module fproj_utilities
         !test coordinate operation against the smallest of both crs extent.
         pj_crs_extent_smallest
     end enum
-    !
+    !pj_proj
     enum,bind(c)
         enumerator :: pj_proj_5,pj_proj_4
     end enum
-    !
+    !pj_cs_type
     enum,bind(c)
         enumerator :: pj_cs_type_unknown,&
         pj_cs_type_cartesian,&
@@ -76,15 +76,15 @@ module fproj_utilities
         pj_cs_type_temporalcount,&
         pj_cs_type_temporalmeasure
     end enum
-    !
+    !pj_log
     enum,bind(c)
-        enumerator :: pj_log_none = 0,&
-                      pj_log_error = 1,&
-                      pj_log_debug = 2,&
-                      pj_log_trace = 3,&
-                      pj_log_tell = 4,&
-                      pj_log_debug_major = 2,& ! for proj_api.h compatibility
-                      pj_log_debug_minor = 3  ! for proj_api.h compatibility
+        enumerator :: pj_log_none = 0_c_int,&
+                      pj_log_error = 1_c_int,&
+                      pj_log_debug = 2_c_int,&
+                      pj_log_trace = 3_c_int,&
+                      pj_log_tell = 4_c_int,&
+                      pj_log_debug_major = 2_c_int,& ! for proj_api.h compatibility
+                      pj_log_debug_minor = 3_c_int  ! for proj_api.h compatibility
     end enum
     !
     type,bind(c) :: pj
