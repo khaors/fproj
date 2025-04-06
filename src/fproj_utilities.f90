@@ -1,18 +1,19 @@
-module fproj
+module fproj_utilities
     use iso_fortran_env, only: wp => real64;
     use,intrinsic :: iso_c_binding, only: c_int,c_double,c_ptr,&
-        c_null_ptr,c_char,c_size_t,c_associated,c_signed_char,c_f_pointer;
+        c_null_ptr,c_char,c_size_t,c_associated,c_signed_char,&
+          c_f_pointer,c_null_char;
     implicit none;
     !
     integer(c_int),parameter :: NUMCHAR=512;
-    !
+    ! pj_direction
     enum,bind(c) 
         enumerator :: &
         pj_fwd = 1, &
         pj_ident= 0, &
         pj_inv = -1
     end enum  
-    !
+    ! pj_category
     enum,bind(c)
         enumerator :: pj_category_ellipsoid,&
         pj_category_prime_meridian,&
@@ -21,7 +22,7 @@ module fproj
         pj_category_coordinate_operation,&
         pj_category_datum_ensemble
     end enum
-    !
+  !
 	enum, bind(c)
 	  enumerator :: pj_type_unknown, &
 	    pj_type_ellipsoid, &
@@ -289,7 +290,7 @@ module fproj
 	  function proj_create(ctx, definition) bind(c,name='proj_create')
 	  import
 	  type(pj_context),value :: ctx
-	  character(kind=c_char) :: definition(*) !< definition string, must be terminated by //c_null_char
+	  character(kind=c_char) :: definition(*)
 	  type(pj) :: proj_create
 	  end function proj_create
 	end interface
@@ -299,8 +300,8 @@ module fproj
 	   bind(c,name='proj_create_crs_to_crs')
 	  import
 	  type(pj_context),value :: ctx
-	  character(kind=c_char) :: source_crs(*) !< source projection string, must be terminated by //char(0)
-	  character(kind=c_char) :: target_crs(*) !< target projection string, must be terminated by //char(0)
+	  character(kind=c_char) :: source_crs(*)
+	  character(kind=c_char) :: target_crs(*)
 	  type(pj_area),value :: area
 	  type(pj) :: proj_create_crs_to_crs
 	  end function proj_create_crs_to_crs
@@ -843,6 +844,32 @@ module fproj
 
         end function strtofchar_ptr_2
         !
+        function c_ptr_to_char(cstr,max_len) result(fstr)
+            type(c_ptr),intent(in) :: cstr
+            integer,intent(in) :: max_len
+            character(len=max_len) :: fstr
+            !
+            type(c_ptr) :: ptr
+            integer(kind=c_int) :: len,i,n
+            character(kind=c_char),pointer :: c_array(:)
+            !
+            fstr='';
+            if(.not. c_associated(cstr)) then
+                write(*,*) "Error: NULL C pointer passed to c_ptr_to_char()";
+                stop;
+            end if
+            n=max_len;
+            ptr=cstr;
+            call c_f_pointer(ptr,c_array,[n]);
+            len=0;
+            do i=1,size(c_array);
+                if(c_array(i) == c_null_char) exit;
+                len=len+1; 
+            end do
+            fstr=transfer(c_array(1:len),fstr);
+            !
+        end function c_ptr_to_char
+        !
         subroutine print_info_pj(info)
             type(pj_info),intent(in) :: info 
             !
@@ -870,4 +897,4 @@ module fproj
             !
         end subroutine print_info_pj_info
     !
-end module fproj
+end module fproj_utilities
