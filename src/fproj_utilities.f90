@@ -139,103 +139,103 @@ module fproj_utilities
     ! Latitude and Longitude
     type,bind(c) :: pj_lp
         !private
-        real(c_double) :: lam=0.0_c_double;
-        real(c_double) :: phi=0.0_c_double;
+        real(kind=c_double) :: lam=0.0_c_double;
+        real(kind=c_double) :: phi=0.0_c_double;
     end type pj_lp
     ! Cartesian coordinates
     type,bind(c) :: pj_xy
         !private
-        real(c_double) :: x=0.0_c_double;
-        real(c_double) :: y=0.0_c_double;
+        real(kind=c_double) :: x=0.0_c_double;
+        real(kind=c_double) :: y=0.0_c_double;
     end type pj_xy
     ! Generic coordinates
     type,bind(c) :: pj_uv
-        real(c_double) :: u=0.0_c_double;
-        real(c_double) :: v=0.0_c_double;
+        real(kind=c_double) :: u=0.0_c_double;
+        real(kind=c_double) :: v=0.0_c_double;
     end type pj_uv
     ! 3D Coords
     ! Longitude, latitude, vertical component
     type,bind(c) :: pj_lpz
-        real(c_double) :: lam=0.0_c_double;
-        real(c_double) :: phi=0.0_c_double;
-        real(c_double) :: z=0.0_c_double;
+        real(kind=c_double) :: lam=0.0_c_double;
+        real(kind=c_double) :: phi=0.0_c_double;
+        real(kind=c_double) :: z=0.0_c_double;
     end type pj_lpz
     ! 3D Cartersian
     type,bind(c) :: pj_xyz
-        real(c_double) :: x=0.0_c_double;
-        real(c_double) :: y=0.0_c_double;
-        real(c_double) :: z=0.0_c_double;    
+        real(kind=c_double) :: x=0.0_c_double;
+        real(kind=c_double) :: y=0.0_c_double;
+        real(kind=c_double) :: z=0.0_c_double;    
     end type pj_xyz
     ! 3D Generic coords
     type,bind(c) :: pj_uvw
-        real(c_double) :: u=0.0_c_double;
-        real(c_double) :: v=0.0_c_double;
-        real(c_double) :: w=0.0_c_double;    
+        real(kind=c_double) :: u=0.0_c_double;
+        real(kind=c_double) :: v=0.0_c_double;
+        real(kind=c_double) :: w=0.0_c_double;    
     end type pj_uvw
     ! Spatio-temporal coordinates
     ! Longitude, latitude, z and time
     type,bind(c) :: pj_lpzt
-        real(c_double) :: lam=0.0_c_double;
-        real(c_double) :: phi=0.0_c_double;
-        real(c_double) :: z=0.0_c_double;
-        real(c_double) :: t=0.0_c_double;    
+        real(kind=c_double) :: lam=0.0_c_double;
+        real(kind=c_double) :: phi=0.0_c_double;
+        real(kind=c_double) :: z=0.0_c_double;
+        real(kind=c_double) :: t=0.0_c_double;    
     end type pj_lpzt
     ! Euclidean spatio-temporal coordinates
     type,bind(c) :: pj_xyzt
-        real(c_double) :: x=0.0_c_double;
-        real(c_double) :: y=0.0_c_double;
-        real(c_double) :: z=0.0_c_double;
-        real(c_double) :: t=0.0_c_double;    
+        real(kind=c_double) :: x=0.0_c_double;
+        real(kind=c_double) :: y=0.0_c_double;
+        real(kind=c_double) :: z=0.0_c_double;
+        real(kind=c_double) :: t=0.0_c_double;    
     end type pj_xyzt
     ! Generic spatio-temporal coordinates
     type,bind(c) :: pj_uvwt
-        real(c_double) :: u=0.0_c_double;
-        real(c_double) :: v=0.0_c_double;
-        real(c_double) :: w=0.0_c_double;
-        real(c_double) :: t=0.0_c_double;    
+        real(kind=c_double) :: u=0.0_c_double;
+        real(kind=c_double) :: v=0.0_c_double;
+        real(kind=c_double) :: w=0.0_c_double;
+        real(kind=c_double) :: t=0.0_c_double;    
     end type pj_uvwt
     ! Ancillary types for geodetic computions
     type,bind(c) :: pj_opk
-        real(c_double) :: o=0.0_c_double;
-        real(c_double) :: p=0.0_c_double;
-        real(c_double) :: k=0.0_c_double;
+        real(kind=c_double) :: o=0.0_c_double;
+        real(kind=c_double) :: p=0.0_c_double;
+        real(kind=c_double) :: k=0.0_c_double;
     end type pj_opk
     !
     type,bind(c) :: pj_enu
-        real(c_double) :: e=0.0_c_double;
-        real(c_double) :: n=0.0_c_double;
-        real(c_double) :: u=0.0_c_double;        
+        real(kind=c_double) :: e=0.0_c_double;
+        real(kind=c_double) :: n=0.0_c_double;
+        real(kind=c_double) :: u=0.0_c_double;        
     end type pj_enu
     !
     type,bind(c) :: pj_geod
-        real(c_double) :: s=0.0_c_double;
-        real(c_double) :: a1=0.0_c_double;
-        real(c_double) :: a2=0.0_c_double;        
+        real(kind=c_double) :: s=0.0_c_double;
+        real(kind=c_double) :: a1=0.0_c_double;
+        real(kind=c_double) :: a2=0.0_c_double;        
     end type pj_geod
     ! Complex coordinate types
     type,bind(c) :: pj_coord
-        real(c_double) :: x=huge(1.0_c_double);
-        real(c_double) :: y=huge(1.0_c_double);
-        real(c_double) :: z=0.0_c_double;
-        real(c_double) :: t=0.0_c_double;
+        real(kind=c_double) :: x=huge(1.0_c_double);
+        real(kind=c_double) :: y=huge(1.0_c_double);
+        real(kind=c_double) :: z=0.0_c_double;
+        real(kind=c_double) :: t=0.0_c_double;
     end type pj_coord
     ! Projection derivatives
     type,bind(c) :: pj_factors
-        real(c_double) :: meridional_scale; !h
-        real(c_double) ::parallel_scale;    !k
-        real(c_double) :: areal_scale;      !s
+        real(kind=c_double) :: meridional_scale; !h
+        real(kind=c_double) ::parallel_scale;    !k
+        real(kind=c_double) :: areal_scale;      !s
 
-	    real(c_double) :: angular_distortion;      !omega
-	    real(c_double) :: meridian_parallel_angle; !theta-prime
-	    real(c_double) :: meridian_convergence;    !alpha
+	    real(kind=c_double) :: angular_distortion;      !omega
+	    real(kind=c_double) :: meridian_parallel_angle; !theta-prime
+	    real(kind=c_double) :: meridian_convergence;    !alpha
 
-	    real(c_double) :: tissot_semimajor;  !a
-	    real(c_double) :: tissot_semiminor;  !b
+	    real(kind=c_double) :: tissot_semimajor;  !a
+	    real(kind=c_double) :: tissot_semiminor;  !b
 
-	    real(c_double) :: dx_dlam;
-	    real(c_double) :: dx_dphi;
-	    real(c_double) :: dy_dlam;
-	    real(c_double) :: dy_dphi;
+	    real(kind=c_double) :: dx_dlam;
+	    real(kind=c_double) :: dx_dphi;
+	    real(kind=c_double) :: dy_dlam;
+	    real(kind=c_double) :: dy_dphi;
     end type pj_factors
     !
     type,bind(c) :: pj_ellps
@@ -258,9 +258,9 @@ module fproj_utilities
     end type pj_prime_meridians
     ! Info structure
     type,bind(c) :: pj_info
-        integer(c_int) :: major 
-        integer(c_int) :: minor 
-        integer(c_int) :: patch
+        integer(kind=c_int) :: major 
+        integer(kind=c_int) :: minor 
+        integer(kind=c_int) :: patch
         type(c_ptr) :: release
         type(c_ptr) :: version
         type(c_ptr) :: searchpath
@@ -291,12 +291,12 @@ module fproj_utilities
         type(c_ptr) :: code
         type(c_ptr) :: name 
         integer(kind=kind(pj_type_unknown)) :: type
-        integer(c_int) :: deprecated
-        integer(c_int) :: boox_valid
-        real(c_double) :: west_lon_degree
-        real(c_double) :: south_lat_degree
-        real(c_double) :: east_lon_degree
-        real(c_double) :: north_lat_degree
+        integer(kind=c_int) :: deprecated
+        integer(kind=c_int) :: boox_valid
+        real(kind=c_double) :: west_lon_degree
+        real(kind=c_double) :: south_lat_degree
+        real(kind=c_double) :: east_lon_degree
+        real(kind=c_double) :: north_lat_degree
         type(c_ptr) :: area_name
         type(c_ptr) :: projection_method_name
         type(c_ptr) :: celestial_body_name 
