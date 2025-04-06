@@ -224,7 +224,7 @@ source-dir="src"
 #stdlib = {git="https://github.com/LKedward/stdlib-fpm.git", rev = "5a9b7a8" }.
 
   # There may be multiple packages listed:
-
+M_CLI        = { git = "https://github.com/urbanjost/M_CLI.git" }
 #M_strings = { git = "https://github.com/urbanjost/M_strings.git" }
 #M_time    = { git = "https://github.com/urbanjost/M_time.git" }
 
@@ -295,7 +295,7 @@ test-drive.tag = "v0.4.0"
 [[executable]]
 name="fproj"
 source-dir="app"
-main="main.f90"
+main="fproj.f90"
 
   # You may repeat this pattern to define additional applications. For instance,
   # the following sample illustrates all accepted options, where "link" and
