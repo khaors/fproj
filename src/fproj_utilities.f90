@@ -287,45 +287,45 @@ module fproj_utilities
     ! PROJ functions
     !
 	interface
-	  function proj_create(ctx, definition) bind(c,name='proj_create')
-	  import
-	  type(pj_context),value :: ctx
-	  character(kind=c_char) :: definition(*)
-	  type(pj) :: proj_create
-	  end function proj_create
-	end interface
+	    function proj_create(ctx, definition) bind(c,name='proj_create')
+            import
+            type(pj_context),value :: ctx
+            character(kind=c_char) :: definition(*)
+            type(pj) :: proj_create
+            end function proj_create
+        end interface
 	!
 	interface
-	  function proj_create_crs_to_crs(ctx, source_crs, target_crs, area) &
-	   bind(c,name='proj_create_crs_to_crs')
-	  import
-	  type(pj_context),value :: ctx
-	  character(kind=c_char) :: source_crs(*)
-	  character(kind=c_char) :: target_crs(*)
-	  type(pj_area),value :: area
-	  type(pj) :: proj_create_crs_to_crs
-	  end function proj_create_crs_to_crs
+        function proj_create_crs_to_crs(ctx, source_crs, target_crs, area) &
+        bind(c,name='proj_create_crs_to_crs')
+            import
+            type(pj_context),value :: ctx
+            character(kind=c_char) :: source_crs(*)
+            character(kind=c_char) :: target_crs(*)
+            type(pj_area),value :: area
+            type(pj) :: proj_create_crs_to_crs
+        end function proj_create_crs_to_crs
 	end interface
 
 	interface
-	  function proj_create_crs_to_crs_from_pj(ctx, source_crs, target_crs, area, options) &
-	   bind(c,name='proj_create_crs_to_crs_from_pj')
-	  import
-	  type(pj_context),value :: ctx
-	  type(pj),value :: source_crs
-	  type(pj),value :: target_crs
-	  type(pj_area),value :: area
-	  type(c_ptr),value :: options !< char**, use c_ptr_ptr from libfortranc to create it in fortran
-	  type(pj) :: proj_create_crs_to_crs_from_pj
-	  end function proj_create_crs_to_crs_from_pj
+        function proj_create_crs_to_crs_from_pj(ctx, source_crs, target_crs, area, options) &
+        bind(c,name='proj_create_crs_to_crs_from_pj')
+            import
+            type(pj_context),value :: ctx
+            type(pj),value :: source_crs
+            type(pj),value :: target_crs
+            type(pj_area),value :: area
+            type(c_ptr),value :: options !< char**, use c_ptr_ptr from libfortranc to create it in fortran
+            type(pj) :: proj_create_crs_to_crs_from_pj
+        end function proj_create_crs_to_crs_from_pj
 	end interface
 	!
 	interface
-	  function proj_destroy(p) bind(c,name='proj_destroy')
-	  import
-	  type(pj),value :: p
-	  type(pj) :: proj_destroy
-	  end function proj_destroy
+        function proj_destroy(p) bind(c,name='proj_destroy')
+            import
+            type(pj),value :: p
+            type(pj) :: proj_destroy
+        end function proj_destroy
 	end interface
     !
     interface
@@ -561,138 +561,138 @@ module fproj_utilities
     ! PROJ context
     !
     interface
-      function proj_context_create() bind(c,name='proj_context_create')
-      import
-      type(pj_context) :: proj_context_create
-      end function proj_context_create
+        function proj_context_create() bind(c,name='proj_context_create')
+            import
+            type(pj_context) :: proj_context_create
+        end function proj_context_create
     end interface
 
     interface
-      function proj_context_destroy(ctx) bind(c,name='proj_context_destroy')
-      import
-      type(pj_context),value :: ctx
-      type(pj_context) :: proj_context_destroy
-      end function proj_context_destroy
+        function proj_context_destroy(ctx) bind(c,name='proj_context_destroy')
+            import
+            type(pj_context),value :: ctx
+            type(pj_context) :: proj_context_destroy
+        end function proj_context_destroy
     end interface
 
     interface
-      function proj_context_clone(ctx) bind(c,name='proj_context_clone')
-      import
-      type(pj_context),value :: ctx
-      type(pj_context) :: proj_context_clone
-      end function proj_context_clone
+        function proj_context_clone(ctx) bind(c,name='proj_context_clone')
+            import
+            type(pj_context),value :: ctx
+            type(pj_context) :: proj_context_clone
+        end function proj_context_clone
     end interface
     !
     interface
-      subroutine proj_area_set_bbox(area, west_lon_degree, south_lat_degree, &
-       east_lon_degree, north_lat_degree) bind(c,name='proj_area_set_bbox')
-      import
-      type(pj_area),value :: area
-      real(kind=c_double),value :: west_lon_degree
-      real(kind=c_double),value :: south_lat_degree
-      real(kind=c_double),value :: east_lon_degree
-      real(kind=c_double),value :: north_lat_degree
-      end subroutine proj_area_set_bbox
+        subroutine proj_area_set_bbox(area, west_lon_degree, south_lat_degree, &
+        east_lon_degree, north_lat_degree) bind(c,name='proj_area_set_bbox')
+            import
+            type(pj_area),value :: area
+            real(kind=c_double),value :: west_lon_degree
+            real(kind=c_double),value :: south_lat_degree
+            real(kind=c_double),value :: east_lon_degree
+            real(kind=c_double),value :: north_lat_degree
+        end subroutine proj_area_set_bbox
     end interface
 
     interface
-      subroutine proj_area_destroy(area) bind(c,name='proj_area_destroy')
-      import
-      type(pj_area),value :: area
-      end subroutine proj_area_destroy
+        subroutine proj_area_destroy(area) bind(c,name='proj_area_destroy')
+            import
+            type(pj_area),value :: area
+        end subroutine proj_area_destroy
     end interface
     !
 	interface
-	  function proj_trans(p, direction, coord) bind(c,name='proj_trans')
-	  import
-	  type(pj),value :: p
-	  integer(kind=kind(pj_fwd)),value :: direction ! warning this is an enum
-	  type(pj_coord),value :: coord
-	  type(pj_coord) :: proj_trans
-	  end function proj_trans
+        function proj_trans(p, direction, coord) bind(c,name='proj_trans')
+            import
+            type(pj),value :: p
+            integer(kind=kind(pj_fwd)),value :: direction ! warning this is an enum
+            type(pj_coord),value :: coord
+            type(pj_coord) :: proj_trans
+        end function proj_trans
 	end interface
     !
     interface
-      function proj_trans_array(p, direction, n, coord) bind(c,name='proj_trans_array')
-      import
-      type(pj),value :: p
-      integer(kind=kind(pj_fwd)),value :: direction ! warning this is an enum
-      integer(kind=c_size_t),value :: n
-      type(pj_coord) :: coord(*)
-      integer(kind=c_int) :: proj_trans_array
-      end function proj_trans_array
+        function proj_trans_array(p, direction, n, coord) bind(c,name='proj_trans_array')
+            import
+            type(pj),value :: p
+            integer(kind=kind(pj_fwd)),value :: direction ! warning this is an enum
+            integer(kind=c_size_t),value :: n
+            type(pj_coord) :: coord(*)
+            integer(kind=c_int) :: proj_trans_array
+        end function proj_trans_array
     end interface
     !
     interface
-      function proj_info() bind(c,name='proj_info')
-      import
-      type(pj_info) :: proj_info
-      end function proj_info
+        function proj_info() bind(c,name='proj_info')
+            import
+            type(pj_info) :: proj_info
+        end function proj_info
     end interface
     !
     interface
-      function proj_pj_info(p) bind(c,name='proj_pj_info')
-      import
-      type(pj),value :: p
-      type(pj_proj_info) :: proj_pj_info
-      end function proj_pj_info
+        function proj_pj_info(p) bind(c,name='proj_pj_info')
+            import
+            type(pj),value :: p
+            type(pj_proj_info) :: proj_pj_info
+        end function proj_pj_info
     end interface
     !
     interface
-      function proj_get_type(obj) bind(c,name='proj_get_type')
-      import
-      type(pj),value :: obj
-      integer(kind=kind(pj_type_unknown)) :: proj_get_type
-      end function proj_get_type
+        function proj_get_type(obj) bind(c,name='proj_get_type')
+            import
+            type(pj),value :: obj
+            integer(kind=kind(pj_type_unknown)) :: proj_get_type
+        end function proj_get_type
     end interface
     !
     interface
-      function proj_torad(angle_in_degrees) bind(c,name='proj_torad')
-      import
-      real(kind=c_double) :: angle_in_degrees
-      real(kind=c_double) :: proj_torad
-      end function proj_torad
+        function proj_torad(angle_in_degrees) bind(c,name='proj_torad')
+            import
+            real(kind=c_double) :: angle_in_degrees
+            real(kind=c_double) :: proj_torad
+        end function proj_torad
     end interface
     !
     interface
-      function proj_todeg(angle_in_radians) bind(c,name='proj_todeg')
-      import
-      real(kind=c_double) :: angle_in_radians
-      real(kind=c_double) :: proj_todeg
-      end function proj_todeg
+        function proj_todeg(angle_in_radians) bind(c,name='proj_todeg')
+            import
+            real(kind=c_double) :: angle_in_radians
+            real(kind=c_double) :: proj_todeg
+        end function proj_todeg
     end interface
     !
     interface
-      function proj_errno(p) bind(c,name='proj_errno')
-      import
-      type(pj),value :: p
-      integer(kind=c_int) :: proj_errno
-      end function proj_errno
+        function proj_errno(p) bind(c,name='proj_errno')
+            import
+            type(pj),value :: p
+            integer(kind=c_int) :: proj_errno
+        end function proj_errno
     end interface
     !
     interface
-      function proj_context_errno(ctx) bind(c,name='proj_context_errno')
-      import
-      type(pj_context),value :: ctx
-      integer(kind=c_int) :: proj_context_errno
-      end function proj_context_errno
+        function proj_context_errno(ctx) bind(c,name='proj_context_errno')
+            import
+            type(pj_context),value :: ctx
+            integer(kind=c_int) :: proj_context_errno
+        end function proj_context_errno
     end interface
     !
     interface
-      function proj_errno_string(err) bind(c,name='proj_errno_string')
-      import
-      integer(kind=c_int),value :: err
-      type(c_ptr) :: proj_errno_string
-      end function proj_errno_string
+        function proj_errno_string(err) bind(c,name='proj_errno_string')
+            import
+            integer(kind=c_int),value :: err
+            type(c_ptr) :: proj_errno_string
+        end function proj_errno_string
     end interface
     !
     interface
-      function proj_context_errno_string(ctx, err) bind(c,name='proj_context_errno_string')
-      import
-      type(pj_context),value :: ctx
-      integer(kind=c_int),value :: err
-      type(c_ptr) :: proj_context_errno_string
-      end function proj_context_errno_string
+        function proj_context_errno_string(ctx, err) bind(c,name='proj_context_errno_string')
+            import
+            type(pj_context),value :: ctx
+            integer(kind=c_int),value :: err
+            type(c_ptr) :: proj_context_errno_string
+        end function proj_context_errno_string
     end interface
     !
     interface
@@ -717,8 +717,9 @@ module fproj_utilities
     end interface
     !
     interface proj_associated
-      module procedure proj_associated_pj, proj_associated_context, &
-       proj_associated_area
+      module procedure proj_associated_pj, &
+        proj_associated_context, &
+        proj_associated_area
     end interface proj_associated
     !
     interface strtofchar
