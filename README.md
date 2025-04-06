@@ -1,7 +1,7 @@
 # fproj
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Fortran](https://img.shields.io/badge/Fortran-734F96?logo=fortran&logoColor=fff)]
+[![Fortran](https://img.shields.io/badge/Fortran-734F96?logo=fortran&logoColor=fff)](https://fpm.fortran-lang.org)
 [![fpm](https://img.shields.io/badge/fpm-Fortran_package_manager-734f96)](https://fpm.fortran-lang.org)
 
 Proj is a library for working with coordinate transformations and geographical projections in spatial problems.  This is a modern fortran interface that only includes the common procedures of the proj library.
