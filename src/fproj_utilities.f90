@@ -1,8 +1,15 @@
 module fproj_utilities
     use iso_fortran_env, only: wp => real64;
-    use,intrinsic :: iso_c_binding, only: c_int,c_double,c_ptr,&
-        c_null_ptr,c_char,c_size_t,c_associated,c_signed_char,&
-          c_f_pointer,c_null_char;
+    use,intrinsic :: iso_c_binding, only: c_int,&
+        c_double,&
+        c_ptr,&
+        c_null_ptr,&
+        c_char,&
+        c_size_t,&
+        c_associated,&
+        c_signed_char,&
+        c_f_pointer,&
+        c_null_char;
     implicit none;
     !
     integer(c_int),parameter :: NUMCHAR=512;
@@ -27,27 +34,50 @@ module fproj_utilities
 	  enumerator :: pj_type_unknown, &
 	    pj_type_ellipsoid, &
 	    pj_type_prime_meridian, &
-	    pj_type_geodetic_reference_frame, pj_type_dynamic_geodetic_reference_frame, &
-	    pj_type_vertical_reference_frame, pj_type_dynamic_vertical_reference_frame, &
+	    pj_type_geodetic_reference_frame, &
+        pj_type_dynamic_geodetic_reference_frame, &
+	    pj_type_vertical_reference_frame, &
+        pj_type_dynamic_vertical_reference_frame, &
 	    pj_type_datum_ensemble, &
 	    pj_type_crs, &
-	    pj_type_geodetic_crs, pj_type_geocentric_crs, &
-	    pj_type_geographic_crs, pj_type_geographic_2d_crs, pj_type_geographic_3d_crs, &
-	    pj_type_vertical_crs, pj_type_projected_crs, pj_type_compound_crs, &
-	    pj_type_temporal_crs, pj_type_engineering_crs, pj_type_bound_crs, pj_type_other_crs, &
-	    pj_type_conversion, pj_type_transformation, pj_type_concatenated_operation, &
+	    pj_type_geodetic_crs, &
+        pj_type_geocentric_crs, &
+	    pj_type_geographic_crs, &
+        pj_type_geographic_2d_crs, &
+        pj_type_geographic_3d_crs, &
+	    pj_type_vertical_crs, &
+        pj_type_projected_crs, &
+        pj_type_compound_crs, &
+	    pj_type_temporal_crs, &
+        pj_type_engineering_crs, &
+        pj_type_bound_crs, &
+        pj_type_other_crs, &
+	    pj_type_conversion, &
+        pj_type_transformation, &
+        pj_type_concatenated_operation, &
 	    pj_type_other_coordinate_operation, &
-	    pj_type_temporal_datum, pj_type_engineering_datum, pj_type_parametric_datum,&
-        pj_type_derived_projected_crs,pj_type_coordinate_metadata 
+	    pj_type_temporal_datum, &
+        pj_type_engineering_datum, &
+        pj_type_parametric_datum,&
+        pj_type_derived_projected_crs, &
+        pj_type_coordinate_metadata 
 	end enum
     !pj_comparison
     enum,bind(c) 
-        enumerator :: pj_comp_strict, pj_comp_equivalent, pj_comp_equivalent_except_axis_order_geogcrs
+        enumerator :: pj_comp_strict, &
+            pj_comp_equivalent, &
+            pj_comp_equivalent_except_axis_order_geogcrs
     end enum
     !pj_wkt
     enum,bind(c)
-        enumerator ::  pj_wkt2_2015, pj_wkt2_2015_simplified, pj_wkt2_2019, pj_wkt2_2018, &
-             pj_wkt2_2019_simplified, pj_wkt2_2018_simplified, pj_wkt1_gdal, pj_wkt1_esri  
+        enumerator ::  pj_wkt2_2015, &
+            pj_wkt2_2015_simplified, &
+            pj_wkt2_2019, &
+            pj_wkt2_2018, &
+            pj_wkt2_2019_simplified, &
+            pj_wkt2_2018_simplified, &
+            pj_wkt1_gdal, &
+            pj_wkt1_esri  
     end enum
     !pj_crs
     enum,bind(c)
@@ -308,14 +338,14 @@ module fproj_utilities
 	end interface
 
 	interface
-        function proj_create_crs_to_crs_from_pj(ctx, source_crs, target_crs, area, options) &
-        bind(c,name='proj_create_crs_to_crs_from_pj')
+        function proj_create_crs_to_crs_from_pj(ctx, source_crs, target_crs, &
+            area, options) bind(c,name='proj_create_crs_to_crs_from_pj')
             import
             type(pj_context),value :: ctx
             type(pj),value :: source_crs
             type(pj),value :: target_crs
             type(pj_area),value :: area
-            type(c_ptr),value :: options !< char**, use c_ptr_ptr from libfortranc to create it in fortran
+            type(c_ptr),value :: options
             type(pj) :: proj_create_crs_to_crs_from_pj
         end function proj_create_crs_to_crs_from_pj
 	end interface
@@ -337,7 +367,8 @@ module fproj_utilities
     end interface
     !
     interface
-        function proj_is_equivalent_to(obj,other,criterion) bind(c,name='proj_is_equivalent_to')
+        function proj_is_equivalent_to(obj,other,criterion) &
+            bind(c,name='proj_is_equivalent_to')
             import
             type(pj),value :: obj
             type(pj),value :: other
@@ -386,7 +417,8 @@ module fproj_utilities
     end interface
     !
     interface
-        function proj_as_proj_string(ctx,obj,type_,options) bind(c,name='proj_as_proj_string')
+        function proj_as_proj_string(ctx,obj,type_,options) &
+            bind(c,name='proj_as_proj_string')
             import
             type(pj_context),value :: ctx
             type(pj),value :: obj
@@ -434,7 +466,8 @@ module fproj_utilities
     end interface
     !
     interface
-        function proj_crs_get_geodetic_crs(ctx,crs) bind(c,name='proj_crs_get_geodetic_crs')
+        function proj_crs_get_geodetic_crs(ctx,crs) &
+            bind(c,name='proj_crs_get_geodetic_crs')
             import
             type(pj_context),value :: ctx 
             type(pj),value :: crs 
@@ -443,7 +476,8 @@ module fproj_utilities
     end interface
     !
     interface
-        function proj_crs_get_horizontal_datum(ctx,crs) bind(c,name='proj_crs_get_horizontal_datum')
+        function proj_crs_get_horizontal_datum(ctx,crs) &
+            bind(c,name='proj_crs_get_horizontal_datum')
             import
             type(pj_context),value :: ctx 
             type(pj),value :: crs 
@@ -471,7 +505,8 @@ module fproj_utilities
     end interface
     !
     interface
-        function proj_crs_get_datum_ensemble(ctx,crs) bind(c,name='proj_crs_get_datum_ensemble')
+        function proj_crs_get_datum_ensemble(ctx,crs) &
+            bind(c,name='proj_crs_get_datum_ensemble')
             import
             type(pj_context),value :: ctx 
             type(pj),value :: crs 
@@ -480,7 +515,8 @@ module fproj_utilities
     end interface
     !
     interface
-        function proj_crs_get_datum_forced(ctx,crs) bind(c,name='proj_crs_get_datum_forced')
+        function proj_crs_get_datum_forced(ctx,crs) &
+            bind(c,name='proj_crs_get_datum_forced')
             import
             type(pj_context),value :: ctx 
             type(pj),value :: crs 
