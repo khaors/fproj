@@ -593,6 +593,15 @@ module fproj_utilities
             integer(kind=kind(pj_cs_type_unknown)) :: proj_cs_get_type
         end function  proj_cs_get_type
     end interface
+    !
+    interface
+        function proj_cs_get_axis_count(ctx,cs) bind(c,name='proj_cs_get_axis_count')
+            import
+            type(pj_context),value :: ctx
+            type(pj),value :: cs
+            integer(kind=c_int) :: proj_cs_get_axis_count
+        end function proj_cs_get_axis_count 
+    end interface
 	!
     ! PROJ context
     !
@@ -793,8 +802,8 @@ module fproj_utilities
         end function proj_associated_area
         !
         function proj_trans_f(p, direction, coord)
-            type(pj),value :: p !< transfor
-            integer(kind=kind(pj_fwd)),value :: direction ! warning this is an enum
+            type(pj),value :: p 
+            integer(kind=kind(pj_fwd)),value :: direction 
             type(pj_coord) :: coord(:)
             integer :: proj_trans_f
 
@@ -807,8 +816,8 @@ module fproj_utilities
         end function proj_trans_f
         !
         function proj_trans_f1(p, direction, coord)
-            type(pj),value :: p !< transfor
-            integer(kind=kind(pj_fwd)),value :: direction ! warning this is an enum
+            type(pj),value :: p
+            integer(kind=kind(pj_fwd)),value :: direction 
             type(pj_coord) :: coord(:)
             integer :: proj_trans_f1
 
@@ -816,7 +825,7 @@ module fproj_utilities
             integer :: i
             type(pj_coord) :: temp(size(coord))
 
-            n = size(coord)
+            n = size(coord);
             write(*,*) 'n= ',n,direction;
             do i=1,n;
                 temp(i)=proj_trans(p, direction, coord(i));
@@ -825,7 +834,31 @@ module fproj_utilities
 
         end function proj_trans_f1
         !
-        function proj_trans_coord_array(pj_obj, direction, coord_array, coords) result(res)
+        function proj_trans_f2(pj_obj, direction, x_in, y_in, x_out, y_out) result(res)
+            type(pj),value :: pj_obj
+            integer(kind=kind(pj_fwd)),value :: direction
+            real(kind=wp),dimension(:),intent(in) :: x_in,y_in
+            real(kind=wp),dimension(:),intent(out) :: x_out,y_out
+            integer :: res
+            !
+            type(pj_coord),dimension(size(x_in,dim=1)) :: coords
+            integer(kind=c_size_t) :: n
+            !
+            n=size(x_in,dim=1);
+            coords(:)%x=x_in;
+            coords(:)%y=y_in;
+            coords(:)%z=0.0_c_double;
+            coords(:)%t=0.0_c_double;
+            !
+            res=proj_trans_array(pj_obj, direction, n, coords);
+            !
+            x_out=coords(:)%x;
+            y_out=coords(:)%y;
+            !
+        end function proj_trans_f2
+        !
+        function proj_trans_coord_array(pj_obj, direction, coord_array, coords) &
+            result(res)
             type(pj),value :: pj_obj
             integer(kind=kind(pj_fwd)),value :: direction
             real(kind=wp),dimension(:,:) :: coord_array
@@ -873,7 +906,7 @@ module fproj_utilities
 
             safelen = min(strlen(string), fixlen)
 
-            fchar = ''
+            fchar = '';
             if (c_associated(string)) then
               call c_f_pointer(string, pfchar)
               fchar(1:safelen) = pfchar(1:safelen)
