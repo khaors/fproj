@@ -2,7 +2,7 @@ module test_pj
     use iso_fortran_env, only: wp=>real64,int64;
     use,intrinsic :: iso_c_binding, only: c_null_char;
     use testdrive, only: new_unittest, unittest_type, error_type,check;
-    use fproj, only: pj_info,proj_info,print_info;
+    use fproj_utilities, only: pj_info,proj_info,print_info;
     implicit none;
     !
     private;

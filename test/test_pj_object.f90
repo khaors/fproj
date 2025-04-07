@@ -2,7 +2,7 @@ module test_pj_object
     use iso_fortran_env, only: wp=>real64,int64;
     use,intrinsic :: iso_c_binding, only: c_null_char,c_ptr;
     use testdrive, only: new_unittest, unittest_type, error_type,check;
-    use fproj, only: pj,proj_create,proj_destroy,pj_context,&
+    use fproj_utilities, only: pj,proj_create,proj_destroy,pj_context,&
         pj_context_default,pj_area,proj_create_crs_to_crs,&
         proj_associated,proj_is_crs,proj_context_create,&
         proj_create_crs_to_crs_from_pj,pj_comp_strict,proj_is_equivalent_to;
@@ -138,4 +138,4 @@ program tester
         error stop 
     end if
 !
-end program tester    
+end program tester
