@@ -47,7 +47,7 @@ version = "0.1.0"
   # The project version number is a string. A recommended scheme for
   # specifying versions is the Semantic Versioning scheme.
 
-license = "license"
+license = "MIT"
   # Licensing information specified using SPDX identifiers is preferred
   # (eg. "Apache-2.0 OR MIT" or "LGPL-3.0-or-later").
 
