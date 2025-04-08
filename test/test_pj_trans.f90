@@ -69,6 +69,37 @@ module test_pj_trans
         subroutine test_transformation2(error)
             type(error_type),allocatable,intent(out) :: error
             !
+            crs_source='+proj=tmerc '//&
+                '+lat_0=4.59620041666667 '//& 
+                '+lon_0=-74.0775079166667 '//&
+                '+k=1 +x_0=1000000 +y_0=1000000 '//&
+                '+ellps=GRS80 '//&
+                '+towgs84=0,0,0,0,0,0,0 '//& 
+                '+units=m '//&
+                '+no_defs '//&
+                '+type=crs';!'EPSG:3116';
+            crs_target='+proj=tmerc '//&
+                '+lat_0=4 '//&
+                '+lon_0=-73 '//& 
+                '+k=0.9992 '//&
+                '+x_0=5000000 '//& 
+                '+y_0=2000000 '//& 
+                '+ellps=GRS80 '//&
+                '+towgs84=0,0,0,0,0,0,0 '//& 
+                '+units=m +no_defs +type=crs';
+            !
+            pj_obj1 = proj_create_crs_to_crs(pj_context_default, &
+                trim(crs_source)//c_null_char, &
+                trim(crs_target)//c_null_char, area);
+            !
+            coords%x=1126995.5612103844_wp;
+            coords%y=1123968.7220441916_wp;
+            !
+            coords1=proj_trans(pj_obj1, pj_fwd, coords);
+                write(*,*) 'Coords transf= ',coords1%x,coords1%y;
+            !
+            pj_obj1=proj_destroy(pj_obj1);
+                      
 
         end subroutine test_transformation2
 end module test_pj_trans
