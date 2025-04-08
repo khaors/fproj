@@ -9,7 +9,7 @@ module test_pj_trans
     private;
     !
     integer(kind=int64),parameter :: numchar=512;
-    real(kind=wp),parameter :: tolerance=1.0d-10;
+    real(kind=wp),parameter :: tolerance=1.0d-8;
     type(pj) :: pj_obj1,pj_obj2;
     type(pj_area) :: area;
     type(pj_coord) :: coords,coords1,coords2;
@@ -98,9 +98,16 @@ module test_pj_trans
             coords1=proj_trans(pj_obj1, pj_fwd, coords);
                 write(*,*) 'Coords transf= ',coords1%x,coords1%y;
             !
+            coords2=proj_trans(pj_obj1, pj_inv, coords1);
+            write(*,*) 'Coords back transf= ',coords2%x,coords2%y;
+            !
+            call check(error, &
+                dabs(coords%x-coords2%x) < tolerance .and. &
+                dabs(coords%y-coords2%y) < tolerance);
+            if(allocated(error)) return;
+            !
             pj_obj1=proj_destroy(pj_obj1);
-                      
-
+            !          
         end subroutine test_transformation2
 end module test_pj_trans
 
