@@ -1,0 +1,233 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="transforms geospatial coordinates from one coordinate reference system (CRS) to another. This includes cartographic projections as well as geodetic transformations. PROJ is released under the X/MIT open source license">
+    <meta name="author" content="Oscar Garcia-Cabrejo" >
+    <link rel="icon" href="./favicon.png">
+
+    <title>  </title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="./css/pygments.css" rel="stylesheet">
+    <link href="./css/font-awesome.min.css" rel="stylesheet">
+    <link href="./css/local.css" rel="stylesheet">
+      <link  href="./tipuesearch/tipuesearch.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="./js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="./index.html"> </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="./lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/procedures.html">Procedures</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/types.html">Derived Types</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="./search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <!-- Main component for a primary marketing message or call to action -->
+    <div class="p-5 mb-4 bg-light border rounded-3" id="jumbotron">
+      <p>transforms geospatial coordinates from one coordinate reference system (CRS) to another. This includes cartographic projections as well as geodetic transformations. PROJ is released under the X/MIT open source license</p>
+        <p> Find us on&hellip;</p>
+      <p>
+        <a class="btn btn-lg btn-primary" href="https://github.com/khaors/fproj" role="button">GitHub</a>
+        
+        
+        
+        
+      </p>
+    </div>
+
+      <div class="row" id='text'>
+        <div class=col-md-8>
+          <h1></h1>
+          <h1 id="fproj">fproj</h1>
+<p><a href="https://opensource.org/licenses/MIT"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg"></a>
+<a href="https://fortran-lang.org/"><img alt="Fortran" src="https://img.shields.io/badge/Fortran-734F96?logo=fortran&amp;logoColor=fff"></a>
+<a href="https://fpm.fortran-lang.org"><img alt="fpm" src="https://img.shields.io/badge/fpm-Fortran_package_manager-734f96"></a></p>
+<p>Proj is a library for working with coordinate transformations and geographical projections in spatial problems.  This is a modern fortran interface that only includes the common procedures of the proj library.</p>
+<h2 id="motivation">Motivation</h2>
+<h2 id="get-the-code">Get the code</h2>
+<p>Clone the repository</p>
+<div class="codehilite"><pre><span></span><code>git clone https://github.com/khaors/fproj
+cd fproj
+</code></pre></div>
+
+<h2 id="compilation-with-fmp">Compilation with fmp</h2>
+<p>The Fortran Package Manager (fpm) can be used to build <code>fproj</code> using the provided <code>fpm.toml</code> file:</p>
+<div class="codehilite"><pre><span></span><code>fpm build --profile release
+</code></pre></div>
+
+<h2 id="testing">Testing</h2>
+<p>The test can be executed using:</p>
+<div class="codehilite"><pre><span></span><code>fpm test --profile release
+</code></pre></div>
+
+<h2 id="documentation">Documentation</h2>
+<p>The documentation of the library can be accessed in the following links:</p>
+<ul>
+<li><a href="https://khaors.github.io/fproj">html files</a></li>
+</ul>
+<h2 id="licensing-authors-acknowledgements">Licensing, Authors, Acknowledgements</h2>
+<p><em>fproj</em> was written by Oscar Garcia-Cabrejo and is distributed under the <a href="https://github.com/khaors/fproj/blob/master/LICENSE">MIT license</a>. </p>
+<p>You can cite <em>fproj</em> in research publications and reports as follows:
+* Garcia-Cabrejo, O. (2025). <strong><em>fproj: A modern Fortran port of the proj library</em></strong>. https://github.com/khaors/fproj. Accessed: <em>day month year</em>.</p>
+<p>BibTeX entry:</p>
+<div class="codehilite"><pre><span></span><code><span class="x">@misc{Garcia-Cabrejo25,</span>
+<span class="x"> author = {Garcia-Cabrejo, O},</span>
+<span class="x"> title  = </span><span class="cp">{{</span><span class="nv">fproj</span><span class="o">:</span> <span class="nv">A</span> <span class="nv">modern</span> <span class="nv">Fortran</span> <span class="nv">port</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">proj</span> <span class="nv">library</span><span class="cp">}}</span><span class="x">,</span>
+<span class="x"> year   = 2025,</span>
+<span class="x"> howpublished = {\url{https://github.com/khaors/fproj}},</span>
+<span class="x"> note   = {Accessed: day month year}</span>
+<span class="x">}</span>
+</code></pre></div>
+
+<hr>
+        </div>
+          <div class="col-md-4">
+            <div class="card card-body bg-light">
+              <h2 class="card-title">Developer Info</h2>
+              <h4 class="card-text">Oscar Garcia-Cabrejo</h4>
+              <p class="card-text"></p>
+                <div class="text-center"><div class="btn-group" role="group">
+                      <a class="btn btn-lg btn-primary" href="mailto:khaors@gmail.com"><i class="fa fa-envelope fa-lg"></i></a>
+                    
+                    <a class="btn btn-lg btn-primary" href="https://github.com/khaors/fproj"><i class="fa fa-github fa-lg"></i></a>
+                    
+                    
+                    
+                    
+                    
+                    
+                </div></div>
+            </div>
+          </div>
+      </div>
+        <div class="row">
+          <hr>
+          <div class="col-xs-6 col-sm-3">
+            <div>
+              <h3>Source Files</h3>
+              <ul><li><a href='sourcefile\crs_utilities.f90.html'>CRS_utilities.f90</a></li><li><a href='sourcefile\transformer_utilities.f90.html'>transformer_utilities.f90</a></li></ul>
+            </div>
+            <div>
+              <ul>
+                <li><a href="./lists/files.html"><em>All source files&hellip;</em></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3">
+            <div>
+              <h3>Modules</h3>
+              <ul><li><a href='module\crs_utilities.html'>CRS_utilities</a></li><li><a href='module\transformer_utilities.html'>transformer_utilities</a></li></ul>
+            </div>
+            <div>
+              <ul>
+                <li><a href="./lists/modules.html"><em>All modules&hellip;</em></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3">
+            <div>
+              <h3>Procedures</h3>
+              <ul><li><a href='proc\create_from_crs_numbers.html'>create_from_crs_numbers</a></li><li><a href='proc\create_from_crs_strings.html'>create_from_crs_strings</a></li><li><a href='proc\create_from_epsg_number.html'>create_from_epsg_number</a></li><li><a href='proc\create_from_epsg_string.html'>create_from_epsg_string</a></li><li><a href='proc\create_from_proj4.html'>create_from_proj4</a></li><li><a href='proc\destroy_crs.html'>destroy_crs</a></li><li><a href='proc\destroy_transformer.html'>destroy_transformer</a></li><li><a href='proc\transform_inverse_values.html'>transform_inverse_values</a></li><li><a href='proc\transform_values.html'>transform_values</a></li><li><a href='proc\write_crs.html'>write_crs</a></li></ul>
+            </div>
+            <div>
+              <ul>
+                <li><a href="./lists/procedures.html"><em>All procedures&hellip;</em></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3">
+            <div>
+              <h3>Derived Types</h3>
+              <ul><li><a href='type\crs.html'>CRS</a></li><li><a href='type\transformer.html'>transformer</a></li></ul>
+            </div>
+            <div>
+              <ul>
+                <li><a href="./lists/types.html"><em>All derived types&hellip;</em></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              
+ was developed by Oscar Garcia-Cabrejo<br>              &copy; 2025 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2025-11-08 15:30 -0500             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    
+
+    <!-- MathJax JavaScript
+             ================================================== -->
+             <!-- Placed at the end of the document so the pages load faster -->
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+          jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+          extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
+          });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+          <script src="./tipuesearch/tipuesearch_content.js"></script>
+          <script src="./tipuesearch/tipuesearch_set.js"></script>
+          <script src="./tipuesearch/tipuesearch.js"></script>
+
+  </body>
+</html>
