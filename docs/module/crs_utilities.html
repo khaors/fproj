@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="transforms geospatial coordinates from one coordinate reference system (CRS) to another. This includes cartographic projections as well as geodetic transformations. PROJ is released under the X/MIT open source license">
+      <meta name="description" content="fproj is a modern Fortran interface to the proj library. Proj transforms geospatial coordinates from one coordinate reference system (CRS) to another. This includes cartographic projections as well as geodetic transformations. PROJ is released under the X/MIT open source license">
     <meta name="author" content="Oscar Garcia-Cabrejo" >
     <link rel="icon" href="../favicon.png">
 
-    <title>CRS_utilities &ndash; </title>
+    <title>CRS_utilities &ndash; fproj</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -29,7 +29,7 @@
     <div class="container-fluid mb-sm-4 mb-xl-2">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-          <a class="navbar-brand" href="../index.html"> </a>
+          <a class="navbar-brand" href="../index.html">fproj </a>
           <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
                   aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon">
@@ -157,19 +157,20 @@
     </div>
 
     <div class="col-md-9" id='text'>
-      
+      <p>The CRS class is used to encapsulate the information that defines a 
+Coordinate Reference System</p>
 <br>          <div class="card mb-4">
       <h3 class="card-header card-title bg-light">Uses</h3>
       <div class="card-body">
         <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <ul class="list-inline">
+                  <li class="list-inline-item">fproj_utilities</li>
                   <li class="list-inline-item">stdlib_string_type</li>
-                  <li class="list-inline-item">stdlib_error</li>
                   <li class="list-inline-item">stdlib_strings</li>
                   <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/iso_c_binding'>iso_c_binding</a></li>
                   <li class="list-inline-item"><a href='http://fortranwiki.org/fortran/show/iso_fortran_env'>iso_fortran_env</a></li>
-                  <li class="list-inline-item">fproj_utilities</li>
+                  <li class="list-inline-item">stdlib_error</li>
               </ul>
             </li>
             <li class="list-group-item">
@@ -478,7 +479,8 @@ modules which it uses.
       </h3>
     </div>
     <div class="card-body">
-      
+      <p>This class encapsulates the information used to define a Coordinate
+Reference System CRS</p>
 
 
 
@@ -503,12 +505,12 @@ modules which it uses.
               </tr>
               <tr>
                 <td>  procedure, public ::
-  <strong><a href='..\type\crs.html#boundprocedure-destroy~2'>destroy</a></strong> => <a href='C:\GITProjects\fproj\docs\proc\destroy_crs.html'>destroy_crs</a></td>
+  <strong><a href='..\type\crs.html#boundprocedure-destroy'>destroy</a></strong> => <a href='C:\GITProjects\fproj\docs\proc\destroy_crs.html'>destroy_crs</a></td>
                 <td></td>
               </tr>
               <tr>
                 <td>  procedure, public ::
-  <strong><a href='..\type\crs.html#boundprocedure-write~2'>write</a></strong> => <a href='C:\GITProjects\fproj\docs\proc\write_crs.html'>write_crs</a></td>
+  <strong><a href='..\type\crs.html#boundprocedure-write'>write</a></strong> => <a href='C:\GITProjects\fproj\docs\proc\write_crs.html'>write_crs</a></td>
                 <td></td>
               </tr>
           </tbody>
@@ -527,7 +529,7 @@ modules which it uses.
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Constructor of the CRS class form the EPSG code</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -552,7 +554,7 @@ modules which it uses.
             <td>::</td>
             <td><strong>my_crs</strong></td>
             <td>
-
+<p>A <code>CRS</code> object</p>
             </td>
         </tr>
         <tr>
@@ -567,7 +569,7 @@ modules which it uses.
             <td>::</td>
             <td><strong>epsg_code</strong></td>
             <td>
-
+<p>An integer variable with the EPSG code</p>
             </td>
         </tr>
     </tbody>
@@ -582,7 +584,7 @@ modules which it uses.
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Constructor of the CRS class form the EPSG string</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -607,7 +609,7 @@ modules which it uses.
             <td>::</td>
             <td><strong>my_crs</strong></td>
             <td>
-
+<p>A <code>CRS</code> object</p>
             </td>
         </tr>
         <tr>
@@ -622,7 +624,7 @@ modules which it uses.
             <td>::</td>
             <td><strong>epsg_string</strong></td>
             <td>
-
+<p>A character variable with the EPSG string</p>
             </td>
         </tr>
     </tbody>
@@ -637,7 +639,7 @@ modules which it uses.
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Constructor of the CRS class form the proj4 string</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -662,7 +664,7 @@ modules which it uses.
             <td>::</td>
             <td><strong>my_crs</strong></td>
             <td>
-
+<p>A <code>CRS</code> object</p>
             </td>
         </tr>
         <tr>
@@ -677,7 +679,7 @@ modules which it uses.
             <td>::</td>
             <td><strong>proj_string</strong></td>
             <td>
-
+<p>A character variable with the proj4 string</p>
             </td>
         </tr>
     </tbody>
@@ -692,7 +694,7 @@ modules which it uses.
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Destructor of the CRS class</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -717,7 +719,7 @@ modules which it uses.
             <td>::</td>
             <td><strong>my_crs</strong></td>
             <td>
-
+<p>A <code>CRS</code> object</p>
             </td>
         </tr>
     </tbody>
@@ -732,7 +734,7 @@ modules which it uses.
 </h3></div>
     <div class="card-body">
           
-  
+  <p>Subroutine to write the information of a CRS object</p>
 
   <h4>Arguments</h4>
       <table class="table table-striped varlist">
@@ -757,12 +759,12 @@ modules which it uses.
             <td>::</td>
             <td><strong>my_crs</strong></td>
             <td>
-
+<p>A <code>CRS</code> object                </p>
             </td>
         </tr>
         <tr>
             <td>
-              <span class="anchor" id="variable-unit_~2"></span>
+              <span class="anchor" id="variable-unit_"></span>
               integer
             </td>
 <td></td>
@@ -772,7 +774,7 @@ modules which it uses.
             <td>::</td>
             <td><strong>unit_</strong></td>
             <td>
-
+<p>An integer variable with the output unit</p>
             </td>
         </tr>
         <tr>
@@ -787,7 +789,8 @@ modules which it uses.
             <td>::</td>
             <td><strong>fmt</strong></td>
             <td>
-
+<p>A character variable with the format to print the information 
+of the CRS object</p>
             </td>
         </tr>
     </tbody>
@@ -812,7 +815,7 @@ modules which it uses.
         <div class="row justify-content-between">
           <div class="col">
             <p>
-              
+              fproj
  was developed by Oscar Garcia-Cabrejo<br>              &copy; 2025 
 </p>
           </div>
@@ -820,7 +823,7 @@ modules which it uses.
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2025-11-08 15:30 -0500             </p>
+ on 2025-11-08 19:27 -0500             </p>
           </div>
         </div>
         <br>
