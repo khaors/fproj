@@ -218,13 +218,13 @@ source-dir="src"
   # So here are several alternates for specifying a remote dependency (you
   # can have at most one of "branch", "rev" or "tag" present):
 
-#stdlib = { git = "https://github.com/LKedward/stdlib-fpm.git" }
+stdlib = { git="https://github.com/fortran-lang/stdlib", branch="stdlib-fpm" }
 #stdlib = {git="https://github.com/LKedward/stdlib-fpm.git",branch = "master" },
 #stdlib = {git="https://github.com/LKedward/stdlib-fpm.git", tag = "v0.1.0" },
 #stdlib = {git="https://github.com/LKedward/stdlib-fpm.git", rev = "5a9b7a8" }.
 
   # There may be multiple packages listed:
-M_CLI2        = { git = "https://github.com/urbanjost/M_CLI2.git" }
+#M_CLI2        = { git = "https://github.com/urbanjost/M_CLI2.git" }
 #M_strings = { git = "https://github.com/urbanjost/M_strings.git" }
 #M_time    = { git = "https://github.com/urbanjost/M_time.git" }
 

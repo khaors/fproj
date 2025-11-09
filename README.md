@@ -17,7 +17,7 @@ git clone https://github.com/khaors/fproj
 cd fproj
 ```
 
-## Compilation with fmp ![fpm](docs/images/fpm_logo.gif)
+## Compilation with fmp 
 
 The Fortran Package Manager (fpm) can be used to build `fproj` using the provided `fpm.toml` file:
 
