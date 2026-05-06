@@ -1,5 +1,5 @@
 module test_fproj
-    use,intrinsic :: iso_c_binding;
+    use :: iso_c_binding;
     use stdlib_kinds, only: wp => dp;
     use stdlib_string_type, only: string_type,len;
     use stdlib_logger, only: global_logger,read_only_error;

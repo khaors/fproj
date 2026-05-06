@@ -7,7 +7,7 @@ module CRS_utilities
 !! The CRS class is used to encapsulate the information that defines a 
 !! Coordinate Reference System
     use iso_fortran_env, only: wp => real64;
-    use,intrinsic :: iso_c_binding;
+    use :: iso_c_binding;
     use fproj_utilities, only: pj,pj_context,proj_context_create,proj_context_destroy,&
         proj_create,proj_destroy,pj_coord,pj_fwd,pj_inv,pj_area,pj_context_default,&
         proj_create_crs_to_crs,proj_trans,proj_associated,proj_pj_info,print_info,&
