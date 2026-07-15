@@ -38,16 +38,21 @@ contains
 !
         character(len=13) :: proj_from,proj_to
 !
-        write(proj_from, '(I8)') code_from;
-        write(proj_to, '(I8)') code_to;
+        write(proj_from, '(I4)') code_from;
+        write(proj_to, '(I4)') code_to;
         proj_from="EPSG:"//trim(proj_from);
-        proj_to="EPSG:"//trim(proj_to);    
+        proj_to="EPSG:"//trim(proj_to);
+        write(*,*) 'proj_from= ',trim(proj_from);
+        write(*,*) 'proj_to= ',trim(proj_to);
 !
         my_transformer%pj_obj = proj_create_crs_to_crs(&
             pj_context_default, &
             trim(proj_from)//c_null_char, &
             trim(proj_to)//c_null_char,&
             my_transformer%area);
+        !
+        write(*,*) 'associated= ',proj_associated(my_transformer%pj_obj);
+        call print_info(proj_pj_info(my_transformer%pj_obj));
 !
     end subroutine create_from_crs_numbers
 !========================================================================================
@@ -92,7 +97,7 @@ contains
         real(kind=wp),dimension(:,:) :: coord
         logical,optional :: display
 !
-        integer :: number_data,ierr,res
+        integer :: number_data,ierr,res,i
 !
         if(allocated(my_transformer%coord_values)) then
             deallocate(my_transformer%coord_values);
@@ -101,13 +106,11 @@ contains
             deallocate(my_transformer%original_values);
         endif
 !
-        write(*,*) 'Before assignment';
         number_data=size(coord,1);
         allocate(my_transformer%coord_values(number_data),stat=ierr);
         call check(ierr == 0, msg = 'Error while allocating memory for coord_values array');
         my_transformer%coord_values(:)%x=coord(:,1);
         my_transformer%coord_values(:)%y=coord(:,2);
-        write(*,*) 'After assignment';
         my_transformer%original_values=my_transformer%coord_values;
 !
         res = proj_trans_f(my_transformer%pj_obj, &
