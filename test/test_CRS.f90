@@ -46,7 +46,7 @@ module test_crs
             type(error_type),allocatable,intent(out) :: error
 !
             call crs_from%destroy();
-            !call crs_to%destroy();
+            call crs_to%destroy();
 !
         end subroutine test_destroy_crs
 !
