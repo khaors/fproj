@@ -7,7 +7,7 @@ module test_transformer
     !
     implicit none;
     !
-    type(transformer) :: transf1
+    type(transformer) :: transf1,transf2
     !
     public :: collect_transformer
     !
@@ -17,24 +17,30 @@ module test_transformer
 !========================================================================================
             type(unittest_type),allocatable,intent(out) :: testsuite(:)
     !
-            testsuite=[new_unittest("test_create_transformer",&
-                test_create_transformer),&
-                new_unittest("test_transform_transformer",&
-                test_transform_transformer),&
-                new_unittest("test_destroy_transformer",&
-                test_destroy_transformer)];
+            testsuite=[new_unittest("test_create_transformer1",&
+                test_create_transformer1),&
+                new_unittest("test_transform_transformer1",&
+                test_transform_transformer1),&
+                new_unittest("test_destroy_transformer1",&
+                test_destroy_transformer1),&
+                new_unittest("test_create_transformer2",&
+                test_create_transformer2),&
+                new_unittest("test_transform_transformer2",&
+                test_transform_transformer2),&
+                new_unittest("test_destroy_transformer2",&
+                test_destroy_transformer2)];
     !
         end subroutine collect_transformer
 !========================================================================================
-        subroutine test_create_transformer(error)
+        subroutine test_create_transformer1(error)
 !========================================================================================
             type(error_type),allocatable,intent(out) :: error
 !
             call transf1%create(4326,3116);
 !
-        end subroutine test_create_transformer
+        end subroutine test_create_transformer1
 !========================================================================================
-        subroutine test_transform_transformer(error)
+        subroutine test_transform_transformer1(error)
 !========================================================================================
             type(error_type),allocatable,intent(out) :: error
 !
@@ -42,6 +48,7 @@ module test_transformer
             integer :: i
 !
             allocate(coords(4,2));
+            ! Lat and long are inverted
             coords(:,2)=(/-72.9311_wp,-73.11111_wp,-72.7833_wp,-72.9456_wp/);
             coords(:,1)=(/5.7161_wp,5.6161_wp,5.8161_wp,5.9161_wp/);
             do i=1,size(coords,1);
@@ -50,15 +57,51 @@ module test_transformer
             call transf1%transform(coords,display=.true.);
             deallocate(coords);
 !
-        end subroutine test_transform_transformer
+        end subroutine test_transform_transformer1
 !========================================================================================
-        subroutine test_destroy_transformer(error)
+        subroutine test_destroy_transformer1(error)
 !========================================================================================
             type(error_type),allocatable,intent(out) :: error
 !
             call transf1%destroy();
 !
-        end subroutine test_destroy_transformer
+        end subroutine test_destroy_transformer1
+!
+!========================================================================================
+        subroutine test_create_transformer2(error)
+!========================================================================================
+            type(error_type),allocatable,intent(out) :: error
+!
+            call transf2%create(4326,32633);
+!
+        end subroutine test_create_transformer2
+!========================================================================================
+        subroutine test_transform_transformer2(error)
+!========================================================================================
+            type(error_type),allocatable,intent(out) :: error
+!
+            real(kind=wp),allocatable :: coords(:,:)!,y(:)
+            integer :: i
+!
+            allocate(coords(4,2));
+            ! Lat and long are inverted
+            coords(:,2)=(/-12.49_wp,-12.34_wp,-12.51_wp,-12.56_wp/);
+            coords(:,1)=(/41.89_wp,41.78_wp,41.76_wp,41.91_wp/);
+            do i=1,size(coords,1);
+                write(*,*) i,coords(i,1:2);
+            enddo
+            call transf2%transform(coords,display=.true.);
+            deallocate(coords);
+!
+        end subroutine test_transform_transformer2
+!========================================================================================
+        subroutine test_destroy_transformer2(error)
+!========================================================================================
+            type(error_type),allocatable,intent(out) :: error
+!
+            call transf2%destroy();
+!
+        end subroutine test_destroy_transformer2
 !
 end module test_transformer
 !
