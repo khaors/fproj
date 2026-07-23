@@ -37,9 +37,40 @@ contains
         integer :: code_from,code_to
 !
         character(len=13) :: proj_from,proj_to
+        integer :: number_digits_from,number_digits_to
+        character(len=2) :: number_from,number_to
 !
-        write(proj_from, '(I4)') code_from;
-        write(proj_to, '(I4)') code_to;
+        write(*,*) 'Inside create_from_crs_numbers';
+        if(code_from < 0) then
+            call error_stop(msg="The EPSG code from is negative");
+        endif
+!
+        if(code_to < 0) then
+            call error_stop(msg="The EPSG code to is negative");
+        endif
+!
+! Check if EPSG code from has 4 or 5 digits
+!
+        if(code_from > 1000 .and. code_from < 9999) then
+            number_digits_from=4;
+        else
+            number_digits_from=5;
+        endif
+!
+        if(code_to > 1000 .and. code_to < 9999) then
+            number_digits_to=4;
+        else
+            number_digits_to=5;
+        endif
+!
+        write(*,*) 'Number digits= ',number_digits_from,number_digits_to;
+        write(number_from,'(I2)') number_digits_from;
+        write(number_to,'(I2)') number_digits_to;
+!        write(*,*) 'Number digits= ',number_from,number_to;
+
+!
+        write(proj_from, '(I'//trim(number_from)//')') code_from;
+        write(proj_to, '(I'//trim(number_to)//')') code_to;
         proj_from="EPSG:"//trim(proj_from);
         proj_to="EPSG:"//trim(proj_to);
         write(*,*) 'proj_from= ',trim(proj_from);
@@ -119,7 +150,7 @@ contains
 !
         if(present(display)) then
             if(display) then
-                call my_transformer%write(6,'(I4,2f15.6)');
+                call my_transformer%write(6,'(I4,1X,2f15.6)');
             endif
         endif
 !
@@ -149,7 +180,7 @@ contains
         call check(res == 0, msg = 'Error during inverse transformation');
         if(present(display)) then
             if(display) then
-                call my_transformer%write(6,'(2f15.6)');
+                call my_transformer%write(6,'($I,1X,2f15.6)');
             endif
         endif
 !
